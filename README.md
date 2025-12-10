@@ -79,6 +79,7 @@ sk-proj-your-api-key-here
 ⚠️ Never upload your real API key to GitHub
 
 ⚠️ key.txt in this repo contains only a placeholder
+
 ---
 
 ## Usage
