@@ -26,44 +26,43 @@ Bunny is designed to be a **friendly assistant** that is easy to use and interac
 ```bash
 git clone https://github.com/AloneHacker-008/Bunny-AI.git
 cd Bunny-AI
+```
 
 2. Create a virtual environment (optional but recommended)
 
 
-
+```
 python -m venv venv
 # Activate venv:
 # Windows:
 venv\Scripts\activate
 # Linux/Mac:
 source venv/bin/activate
-
+```
 3. Install dependencies
 
 
-
+```
 pip install -r requirements.txt
-
+```
 4. Set your OpenAI API key
 
-
+```
 
 Create a .env file in the project root:
 
 
 OPENAI_API_KEY=your_openai_api_key_here
-
+```
 5. Run Bunny
 
-
-
+```
 python Bunny.py
-
-
+```
 ---
 
-Usage
-
+##Usage
+```
 Chat with Bunny
 
 
@@ -102,11 +101,11 @@ Motivational messages
 
 You: motivate me
 Bunny: You're stronger than you think. Keep going — success is near!
-
+```
 
 ---
 
-Creator
+##Creator
 
 Name: Anup Prasad
 
