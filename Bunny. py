@@ -1,0 +1,365 @@
+# Bunny - Friendly Bunny AI Chatbot (Python version of your C program)
+# Creator : Anup Prasad
+
+import time
+import datetime
+import random
+import webbrowser
+import sys
+import math
+import ast
+import operator
+import os  # Added for clear command
+from openai import OpenAI
+
+client = OpenAI(api_key="sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+random.seed(int(time.time()))
+
+# ---------------- Ask AI Function ----------------
+def ask_ai(question):
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": question}],
+        temperature=1.0,
+        top_p=1.0,
+        max_tokens=5000,
+        presence_penalty=0.6,
+        frequency_penalty=0.0
+    )
+    return response.choices[0].message.content
+
+# ---------------- Show Time ----------------
+def show_time():
+    now = datetime.datetime.now()
+    print(f"Bunny: Current time is {now.strftime('%c')}\n")
+
+# ---------------- Greet by time ----------------
+def greet_by_time():
+    hour = datetime.datetime.now().hour
+    if 5 <= hour < 12:
+        print("Bunny: Good morning ! Hope your day starts great!")
+    elif 12 <= hour < 17:
+        print("Bunny: Good afternoon ! How's your day going?")
+    elif 17 <= hour < 21:
+        print("Bunny: Good evening ! Hope you had a productive day!")
+    else:
+        print("Bunny: Good night ! Working late, huh? Take care!")
+
+# ---------------- Random Replies ----------------
+def random_response():
+    responses = [
+        "Haha, really? That's interesting!",
+        "Oh wow, tell me more about it!",
+        "That sounds cool!",
+        "Hehe, you always make me smile!",
+        "Aww that's sweet!",
+        "I totally get you!",
+        "Hmm… sounds like a story!",
+        "You're fun to talk to!",
+        "I like chatting with you!",
+        "Tell me more!",
+        "That's something new for me!",
+        "I love how you talk",
+        "You have great energy!",
+        "Haha, you're funny!",
+        "That's nice! What else?",
+        "You always make me curious",
+        "Oh interesting! Keep going!",
+        "You're awesome",
+        "Haha! You're cool!",
+        "I'm enjoying this chat"
+    ]
+    print("Bunny:", random.choice(responses))
+
+# ---------------- Arithmetic for many numbers ----------------
+def arithmetic_many(user_input):
+    parts = user_input.split()
+    if len(parts) < 3:
+        print("Bunny: Please enter operation followed by at least two numbers (e.g. 'sum 1 2 3').")
+        return
+    cmd = parts[0]
+    try:
+        nums = [float(x) for x in parts[1:]]
+    except ValueError:
+        print("Bunny: Couldn't parse numbers. Make sure to enter numeric values.")
+        return
+    result = nums[0]
+    for n in nums[1:]:
+        if cmd in ("sum", "add"):
+            result += n
+        elif cmd in ("sub", "subtract"):
+            result -= n
+        elif cmd in ("mul", "multiply"):
+            result *= n
+        elif cmd in ("div", "divide"):
+            if n == 0:
+                print("Bunny: Division by zero!")
+                return
+            result /= n
+        else:
+            print("Bunny: Unknown command. Use sum/add/sub/mul/div.")
+            return
+    print(f"Bunny: Result = {result:.2f}")
+
+# ---------------- Safe BODMAS evaluator using ast ----------------
+_allowed_operators = {
+    ast.Add: operator.add,
+    ast.Sub: operator.sub,
+    ast.Mult: operator.mul,
+    ast.Div: operator.truediv,
+    ast.Pow: operator.pow,
+    ast.USub: operator.neg,
+    ast.UAdd: operator.pos,
+    ast.Mod: operator.mod,
+}
+
+def _eval_ast(node):
+    if isinstance(node, ast.Num):
+        return node.n
+    elif isinstance(node, ast.BinOp):
+        left = _eval_ast(node.left)
+        right = _eval_ast(node.right)
+        op_type = type(node.op)
+        if op_type in _allowed_operators:
+            try:
+                return _allowed_operators[op_type](left, right)
+            except ZeroDivisionError:
+                raise ZeroDivisionError
+        else:
+            raise ValueError("Unsupported operator")
+    elif isinstance(node, ast.UnaryOp):
+        operand = _eval_ast(node.operand)
+        op_type = type(node.op)
+        if op_type in _allowed_operators:
+            return _allowed_operators[op_type](operand)
+        else:
+            raise ValueError("Unsupported unary operator")
+    elif isinstance(node, ast.Expression):
+        return _eval_ast(node.body)
+    else:
+        raise ValueError("Unsupported expression")
+
+def evaluate_bodmas(expr_str):
+    expr = expr_str.strip()
+    try:
+        parsed = ast.parse(expr, mode='eval')
+        result = _eval_ast(parsed)
+        print(f"Bunny: Result = {float(result):.2f}")
+    except ZeroDivisionError:
+        print("Bunny: Division by zero!")
+    except Exception:
+        print("Bunny: Could not evaluate expression. Only arithmetic allowed.")
+
+# ---------------- Number System Converter ----------------
+def number_system_conversion():
+    try:
+        print("\nBunny: Number System Converter Menu")
+        print("1. Binary to Decimal/Octal/Hexa")
+        print("2. Decimal to Binary/Octal/Hexa")
+        print("3. Octal to Decimal/Binary/Hexa")
+        print("4. Hexadecimal to Decimal/Binary/Octal")
+        choice = input("Enter your choice: ").strip()
+        if choice == "1":
+            b = input("Enter Binary: ").strip()
+            dec = int(b, 2)
+            print(f"Decimal: {dec}\nOctal: {oct(dec)[2:]}\nHexa: {hex(dec)[2:].upper()}\n")
+        elif choice == "2":
+            d = int(input("Enter Decimal: ").strip())
+            print("Binary:", bin(d)[2:])
+            print("Octal:", oct(d)[2:])
+            print("Hexa:", hex(d)[2:].upper())
+        elif choice == "3":
+            o = input("Enter Octal: ").strip()
+            dec = int(o, 8)
+            print(f"Decimal: {dec}\nHexa: {hex(dec)[2:].upper()}\nBinary: {bin(dec)[2:]}\n")
+        elif choice == "4":
+            h = input("Enter Hexa: ").strip()
+            dec = int(h, 16)
+            print(f"Decimal: {dec}\nOctal: {oct(dec)[2:]}\nBinary: {bin(dec)[2:]}\n")
+        else:
+            print("Bunny: Invalid choice!")
+    except ValueError:
+        print("Bunny: Invalid number for that base!")
+
+# ---------------- Helper: open URL ----------------
+def open_url(url):
+    try:
+        webbrowser.open_new_tab(url)
+    except Exception as e:
+        print("Bunny: Couldn't open browser:", e)
+
+# ---------------- Main Chat Loop ----------------
+def main():
+    print("\nBunny: Hey! I'm Bunny - your AI Assistant")
+    greet_by_time()
+    print("Type anything to chat with me (type 'bye' to exit)")
+    print("For AI questions, type 'ai <question>'")
+    print()
+
+    while True:
+        try:
+            user_input = input("You: ")
+        except (EOFError, KeyboardInterrupt):
+            print("\nBunny: Bye! Take care.")
+            break
+
+        user_input = user_input.strip()
+        if user_input == "":
+            continue
+        lower = user_input.lower()
+
+        if lower == "clear":
+            os.system('cls' if os.name == 'nt' else 'clear')
+            continue
+
+        if lower.startswith("ai "):
+            question = user_input[3:].strip()
+            print("Bunny: Asking OpenAI...")
+            answer = ask_ai(question)
+            print("AI:", answer)
+            print()
+            continue
+
+        if "bye" in lower or "exit" in lower:
+            print("Bunny: Aww, you're leaving already? Take care, my friend!")
+            break
+
+        if any(w in lower for w in ["hi", "hello", "hey"]):
+            print("Bunny: Hey bestie! How's everything going?")
+            continue
+
+        if "how are you" in lower:
+            print("Bunny: I'm feeling awesome today! How about you?")
+            continue
+
+        if any(w in lower for w in ["i am good", "i am fine", "i'm great", "i am feeling better"]):
+            print("Bunny: That's awesome! I'm really happy to hear that")
+            continue
+
+        if any(w in lower for w in ["i am sad", "feeling sad"]):
+            print("Bunny: Oh no — Don't worry, everything will be okay. I'm here for you")
+            continue
+
+        if any(w in lower for w in ["i am bored", "bored"]):
+            print("Bunny: Hmm… how about listening to music or watching something fun?")
+            continue
+
+        if "about yourself" in lower or "who are you" in lower:
+            print("Bunny: I'm Bunny, your friendly AI assistant created by Anup Prasad.")
+            continue
+
+        if "tell me a joke" in lower:
+            print("Bunny: Why did the computer show up late? Because it had a hard drive!")
+            continue
+
+        if "your name" in lower or "what is your name" in lower:
+            print("Bunny: My name is Bunny — your friendly AI chatbot")
+            continue
+
+        if any(w in lower for w in ["thank you", "thanks"]):
+            print("Bunny: You're most welcome! Anything else I can do?")
+            continue
+
+        if "i love you" in lower:
+            print("Bunny: Aww — That's so sweet! I love you too, bestie")
+            continue
+
+        if "who created you" in lower:
+            print("Bunny: I was created by Anup Prasad — he's awesome!")
+            continue
+
+        if "good morning" in lower:
+            print("Bunny: Good morning! Have a bright day!")
+            continue
+
+        if "good afternoon" in lower:
+            print("Bunny: Good afternoon! Hope your day is amazing!")
+            continue
+
+        if "good evening" in lower:
+            print("Bunny: Good evening! Time to relax!")
+            continue
+
+        if "good night" in lower:
+            print("Bunny: Good night! Sleep well 😴")
+            continue
+
+        if any(w in lower for w in ["motivate", "motivated"]):
+            print("Bunny: You're stronger than you think. Keep going — success is near!")
+            continue
+
+        if any(w in lower for w in ["time", "date"]):
+            show_time()
+            continue
+
+        if "convert" in lower or "number system" in lower:
+            number_system_conversion()
+            continue
+
+        if any(lower.startswith(k) for k in ["sum ", "add ", "sub ", "subtract ", "mul ", "multiply ", "div ", "divide "]):
+            arithmetic_many(lower)
+            continue
+
+        if any(ch in lower for ch in "+-*/()"):
+            expr_chars = set("0123456789.+-*/() ")
+            if all((c in expr_chars) for c in lower):
+                evaluate_bodmas(lower)
+                continue
+
+        if "weather" in lower:
+            location = input("Bunny: Please enter your city name: ").strip()
+            url = f"https://www.google.com/search?q=weather+in+{location.replace(' ', '+')}"
+            print(f"Bunny: Fetching weather for {location}...")
+            open_url(url)
+            continue
+
+        if "open google" in lower:
+            print("Bunny: Opening Google...")
+            open_url("https://www.google.com")
+            continue
+
+        if "open youtube" in lower:
+            print("Bunny: Opening YouTube...")
+            open_url("https://www.youtube.com")
+            continue
+
+        if "play music" in lower or "song" in lower:
+            print("Bunny: Music time! Choose:")
+            print("1. YouTube")
+            print("2. JioSaavn")
+            choice = input("Enter 1 or 2: ").strip()
+            if choice == "1":
+                print("Bunny: Opening YouTube…")
+                open_url("https://youtu.be/h7rpAUGwQ0g?si=Xa-k46q8b8og_A-F")
+            elif choice == "2":
+                print("Bunny: Opening JioSaavn…")
+                open_url("https://www.jiosaavn.com")
+            else:
+                print("Bunny: Invalid choice!")
+            continue
+
+        if "open instagram" in lower:
+            print("Bunny: Opening Instagram...")
+            open_url("https://www.instagram.com")
+            continue
+
+        if "open snapchat" in lower:
+            print("Bunny: Opening Snapchat...")
+            open_url("https://www.snapchat.com")
+            continue
+
+        if "open facebook" in lower:
+            print("Bunny: Opening Facebook...")
+            open_url("https://www.facebook.com")
+            continue
+
+        if "open whatsapp" in lower:
+            print("Bunny: Opening WhatsApp Web...")
+            open_url("https://web.whatsapp.com")
+            continue
+
+        random_response()
+
+if __name__ == "__main__":
+    main()
