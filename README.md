@@ -28,7 +28,7 @@ git clone https://github.com/AloneHacker-008/Bunny-AI.git
 cd Bunny-AI
 ```
 
-2. Create a virtual environment (optional but recommended)
+2. **Create a virtual environment (optional but recommended)**
 
 
 ```
@@ -39,13 +39,15 @@ venv\Scripts\activate
 # Linux/Mac:
 source venv/bin/activate
 ```
-3. Install dependencies
+
+3. **Install dependencies**
 
 
 ```
 pip install -r requirements.txt
 ```
-4. Set your OpenAI API key
+
+4. **Set your OpenAI API key**
 
 ```
 
@@ -54,14 +56,15 @@ Create a .env file in the project root:
 
 OPENAI_API_KEY=your_openai_api_key_here
 ```
-5. Run Bunny
+
+5. **Run Bunny**
 
 ```
 python Bunny.py
 ```
 ---
 
-##Usage
+## Usage
 ```
 Chat with Bunny
 
@@ -92,6 +95,8 @@ Bunny: Number System Converter Menu
 
 Open websites
 
+You: open google
+Bunny: Opening google...
 
 You: open youtube
 Bunny: Opening YouTube...
@@ -105,10 +110,12 @@ Bunny: You're stronger than you think. Keep going — success is near!
 
 ---
 
-##Creator
+## Creator
 
 Name: Anup Prasad
 
 GitHub: https://github.com/AloneHacker-008
 
 About: Creator of Bunny AI Chatbot — a friendly and interactive Python assistant
+
+---
