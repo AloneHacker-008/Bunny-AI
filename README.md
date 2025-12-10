@@ -64,6 +64,22 @@ python Bunny.py
 ```
 ---
 
+ ## AI Key Setup (IMPORTANT)
+
+The chatbot will not run unless you add your OpenAI API key.
+
+1. Go to the project folder
+2. Open the file key.txt
+3. Paste your OpenAI API key inside it:
+
+```
+sk-proj-your-api-key-here
+```
+
+⚠️ Never upload your real API key to GitHub
+⚠️ key.txt in this repo contains only a placeholder
+---
+
 ## Usage
 ```
 Chat with Bunny
@@ -72,21 +88,23 @@ Chat with Bunny
 You: hi
 Bunny: Hey bestie! How's everything going?
 
+You: how are you?
+Bunny: I'm good! what's up on your side?
+
+
 Ask AI questions
 
+You: Who is Elon Musk?
+Bunny: Elon Musk is the CEO of SpaceX and Tesla, known for innovation in tech...
 
-You: ai Who is Elon Musk?
-Bunny: Asking OpenAI...
-AI: Elon Musk is the CEO of SpaceX and Tesla, known for innovation in tech...
 
 Arithmetic operations
 
-
-You: sum 5 10 15
+You: 4+16+7+3
 Bunny: Result = 30.00
 
-Number system conversion
 
+Number system conversion
 
 You: convert
 Bunny: Number System Converter Menu
@@ -101,11 +119,17 @@ Bunny: Opening google...
 You: open youtube
 Bunny: Opening YouTube...
 
+
 Motivational messages
 
 
 You: motivate me
 Bunny: You're stronger than you think. Keep going — success is near!
+
+Exit Bunny
+
+You: exit
+Bunny: Goodbye! Take care :)
 ```
 
 ---
@@ -113,9 +137,7 @@ Bunny: You're stronger than you think. Keep going — success is near!
 ## Creator
 
 Name: Anup Prasad
-
 GitHub: https://github.com/AloneHacker-008
-
 About: Creator of Bunny AI Chatbot — a friendly and interactive Python assistant
 
 ---
