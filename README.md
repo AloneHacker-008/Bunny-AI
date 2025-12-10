@@ -22,7 +22,6 @@ Bunny is designed to be a **friendly assistant** that is easy to use and interac
 ---
 
 ## Installation
-
 1. **Clone the repository**
 ```bash
 git clone https://github.com/AloneHacker-008/Bunny-AI.git
@@ -65,23 +64,26 @@ python Bunny.py
 
 Usage
 
-Start chatting with Bunny:
+Chat with Bunny
 
 
 You: hi
 Bunny: Hey bestie! How's everything going?
 
+Ask AI questions
+
+
 You: ai Who is Elon Musk?
 Bunny: Asking OpenAI...
 AI: Elon Musk is the CEO of SpaceX and Tesla, known for innovation in tech...
 
-Arithmetic example:
+Arithmetic operations
 
 
 You: sum 5 10 15
 Bunny: Result = 30.00
 
-Number system conversion:
+Number system conversion
 
 
 You: convert
@@ -89,13 +91,13 @@ Bunny: Number System Converter Menu
 1. Binary to Decimal/Octal/Hexa
 ...
 
-Open websites:
+Open websites
 
 
 You: open youtube
 Bunny: Opening YouTube...
 
-Motivational messages:
+Motivational messages
 
 
 You: motivate me
@@ -110,98 +112,4 @@ Name: Anup Prasad
 
 GitHub: https://github.com/AloneHacker-008
 
-Project: Bunny AI Chatbot, a friendly and interactive Python assistant
-For AI questions, type 'ai <question>'
-
-You: hi
-Bunny: Hey bestie! How's everything going?
-
-You: how are you
-Bunny: I'm feeling awesome today! How about you?
-
-
-2. Ask AI Questions:
-
-You: ai Who won the last football World Cup?
-Bunny: Asking OpenAI...
-AI: The last FIFA World Cup was won by Argentina in 2022.
-
-
-3. Arithmetic Operations (multiple numbers):
-
-You: sum 5 10 15
-Bunny: Result = 30.00
-
-You: multiply 2 3 4
-Bunny: Result = 24.00
-
-
-4. Evaluate Expressions (BODMAS):
-
-You: 5 + (3 * 2)
-Bunny: Result = 11.00
-
-
-5. Number System Conversion:
-
-You: convert
-Bunny: 
-Bunny: Number System Converter Menu
-1. Binary to Decimal/Octal/Hexa
-2. Decimal to Binary/Octal/Hexa
-3. Octal to Decimal/Binary/Hexa
-4. Hexadecimal to Decimal/Binary/Octal
-Enter your choice: 1
-Enter Binary: 1010
-Decimal: 10
-Octal: 12
-Hexa: A
-
-
-6. Weather Lookup:
-
-You: weather
-Bunny: Please enter your city name: New Delhi
-Bunny: Fetching weather for New Delhi...
-
-(Opens browser with weather info)
-
-
-7. Open Websites:
-
-You: open youtube
-Bunny: Opening YouTube...
-
-(Browser opens YouTube)
-
-
-8. Play Music:
-
-You: play music
-Bunny: Music time! Choose:
-1. YouTube
-2. JioSaavn
-Enter 1 or 2: 1
-Bunny: Opening YouTube...
-
-
-9. Motivation / Fun Chat / Greetings:
-
-You: motivate me
-Bunny: You're stronger than you think. Keep going — success is near!
-
-You: i am sad
-Bunny: Oh no — Don't worry, everything will be okay. I'm here for you
-
-
-10. Exit the Chat:
-
-You: bye
-Bunny: Aww, you're leaving already? Take care, my friend!
-
-
-
-
-Creator:
-Anup Prasad – Python enthusiast and AI developer.
-GitHub: https://github.com/AloneHacker-008
+About: Creator of Bunny AI Chatbot — a friendly and interactive Python assistant
