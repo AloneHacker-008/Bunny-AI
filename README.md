@@ -1,75 +1,116 @@
-Bunny - Friendly AI Chatbot
+# Bunny - Friendly AI Chatbot
 
-Bunny is a friendly Python-based AI chatbot inspired by traditional C programs. It is designed to provide fun, interactive conversations, perform arithmetic, convert number systems, fetch time/date, access web links, and answer questions using OpenAI's GPT models. Bunny is perfect for learning AI integrations in Python while having an engaging chat companion.
+## Description
+**Bunny** is a Python-based friendly AI chatbot created by **Anup Prasad**.  
+It can chat with you, answer AI questions using OpenAI, perform arithmetic operations, evaluate BODMAS expressions, convert number systems, fetch weather, open websites, play music, and provide random fun responses.  
 
-Features:
+Bunny is designed to be a **friendly assistant** that is easy to use and interactive.
 
-Conversational AI: Chat naturally with Bunny using pre-defined responses.
+---
 
-OpenAI Integration: Ask questions and get AI-powered responses.
+## Features
+- Chat interactively with Bunny  
+- Ask AI questions: `ai <your question>`  
+- Arithmetic operations: `sum`, `sub`, `mul`, `div`  
+- BODMAS expression evaluation: `3 + 5 * (2 - 1)`  
+- Number system conversion (Binary, Decimal, Octal, Hex)  
+- Open websites: Google, YouTube, Instagram, Snapchat, Facebook, WhatsApp  
+- Fetch weather information for any city  
+- Play music via YouTube or JioSaavn  
+- Motivational messages and random fun replies  
 
-Arithmetic Operations: Add, subtract, multiply, divide multiple numbers.
+---
 
-Safe BODMAS Evaluation: Solve complex expressions safely.
+## Installation
 
-Number System Conversion: Binary, Decimal, Octal, Hexadecimal.
-
-Weather Lookup: Open browser to check weather in any city.
-
-Quick Access to Websites: Google, YouTube, Instagram, Facebook, WhatsApp, Snapchat.
-
-Random Fun Replies: Keeps conversations lively with funny and friendly messages.
-
-
-Installation:
-
-1. Clone the repository:
-
+1. **Clone the repository**
+```bash
 git clone https://github.com/AloneHacker-008/Bunny-AI.git
 cd Bunny-AI
 
+2. Create a virtual environment (optional but recommended)
 
-2. Create a virtual environment:
+
 
 python -m venv venv
-
-Activate the environment:
-
-On Linux/Mac:
-
+# Activate venv:
+# Windows:
+venv\Scripts\activate
+# Linux/Mac:
 source venv/bin/activate
 
-On Windows:
-
-venv\Scripts\activate
+3. Install dependencies
 
 
-
-3. Install required Python packages:
 
 pip install -r requirements.txt
 
+4. Set your OpenAI API key
 
-4. Set up OpenAI API key:
+
 
 Create a .env file in the project root:
 
+
 OPENAI_API_KEY=your_openai_api_key_here
 
+5. Run Bunny
 
 
-
-Usage:
-
-1. Run the chatbot:
 
 python Bunny.py
 
-Example Interaction:
 
-Bunny: Hey! I'm Bunny - your AI Assistant
-Bunny: Good morning! Hope your day starts great!
-Type anything to chat with me (type 'bye' to exit)
+---
+
+Usage
+
+Start chatting with Bunny:
+
+
+You: hi
+Bunny: Hey bestie! How's everything going?
+
+You: ai Who is Elon Musk?
+Bunny: Asking OpenAI...
+AI: Elon Musk is the CEO of SpaceX and Tesla, known for innovation in tech...
+
+Arithmetic example:
+
+
+You: sum 5 10 15
+Bunny: Result = 30.00
+
+Number system conversion:
+
+
+You: convert
+Bunny: Number System Converter Menu
+1. Binary to Decimal/Octal/Hexa
+...
+
+Open websites:
+
+
+You: open youtube
+Bunny: Opening YouTube...
+
+Motivational messages:
+
+
+You: motivate me
+Bunny: You're stronger than you think. Keep going — success is near!
+
+
+---
+
+Creator
+
+Name: Anup Prasad
+
+GitHub: https://github.com/AloneHacker-008
+
+Project: Bunny AI Chatbot, a friendly and interactive Python assistant
 For AI questions, type 'ai <question>'
 
 You: hi
