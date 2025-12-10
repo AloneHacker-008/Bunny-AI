@@ -11,8 +11,11 @@ import ast
 import operator
 import os  # Added for clear command
 from openai import OpenAI
+from dotenv import load_dotenv
 
-client = OpenAI(api_key="sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 random.seed(int(time.time()))
 
