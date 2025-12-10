@@ -77,6 +77,7 @@ sk-proj-your-api-key-here
 ```
 
 ⚠️ Never upload your real API key to GitHub
+
 ⚠️ key.txt in this repo contains only a placeholder
 ---
 
@@ -137,7 +138,9 @@ Bunny: Goodbye! Take care :)
 ## Creator
 
 Name: Anup Prasad
+
 GitHub: https://github.com/AloneHacker-008
+
 About: Creator of Bunny AI Chatbot — a friendly and interactive Python assistant
 
 ---
